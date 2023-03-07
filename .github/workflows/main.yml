@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 
 env:
-  S3_BUCKET_NAME: S3서비스의버킷명따옴표없이
+  S3_BUCKET_NAME: cicdtest-deploy
 
 jobs:
   build:
@@ -65,8 +65,8 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run:
         aws deploy create-deployment
-        --application-name 어플명
-        --deployment-group-name 코드디플로이그룹명
+        --application-name cicdtest
+        --deployment-group-name cicdtest-group
         --file-exists-behavior OVERWRITE
-        --s3-location bucket=S3서비스의버킷명따옴표없이,bundleType=zip,key=파일명.zip
+        --s3-location bucket=cicdtest-deploy,bundleType=zip,key=파일명.zip
         --region ap-northeast-2
